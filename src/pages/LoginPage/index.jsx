@@ -47,6 +47,7 @@ export const LoginPage = () => {
             name={'email'}
             rules={{ required: true }}
             register={register}
+            placeholder="Email"
           />
           <Input
             errorMessage={errors.password}
@@ -55,6 +56,7 @@ export const LoginPage = () => {
             name={'password'}
             rules={{ required: true }}
             register={register}
+            placeholder="Password"
           />
           <button type="submit">Login</button>
         </form>

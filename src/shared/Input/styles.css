@@ -6,3 +6,7 @@
 .input {
   box-sizing: border-box;
 }
+
+.inputLabel {
+  margin: 0 0 4px 0;
+}
