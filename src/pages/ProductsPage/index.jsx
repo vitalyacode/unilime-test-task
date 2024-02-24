@@ -45,7 +45,7 @@ export const ProductsPage = () => {
 
   return (
     <div className="productsPageContainer">
-      <ProductFilters filters={filters} handleSearch={handleSearch} />
+      <ProductFilters handleSearch={handleSearch} />
       <div className="productsWrapContainer">
         <div className="productsContainer">
           {currentProducts
