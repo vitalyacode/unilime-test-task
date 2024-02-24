@@ -1,0 +1,6 @@
+.mainLayout {
+  /* background-color: theme.palette.background.default; */
+      /* // color: theme.palette.primary.main, */
+  height: 'auto !important';
+  min-height: '100%',
+}
