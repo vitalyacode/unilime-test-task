@@ -49,7 +49,9 @@ export const ProductsPage = () => {
       <div className="productsWrapContainer">
         <div className="productsContainer">
           {currentProducts
-            ? currentProducts.map((product) => <ProductCard key={product.id} product={product} />)
+            ? currentProducts.length
+              ? currentProducts.map((product) => <ProductCard key={product.id} product={product} />)
+              : 'Products by searched filters not found'
             : 'Products not found'}
         </div>
         <Pagination

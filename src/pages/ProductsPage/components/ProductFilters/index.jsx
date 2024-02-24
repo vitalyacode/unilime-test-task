@@ -1,11 +1,14 @@
 import { useCallback, useState } from 'react';
 import { Input } from '../../../../shared/Input';
 import './styles.css';
+import { getToday } from '../../../../utils/getToday';
 
 const initFilters = {
   title: '',
   price_to: 100000,
   price_from: 1,
+  from: '2020-01-01',
+  to: getToday(),
 };
 
 export const ProductFilters = ({ handleSearch }) => {
@@ -35,7 +38,6 @@ export const ProductFilters = ({ handleSearch }) => {
       <Input
         value={filters.title}
         onChange={(e) => handleFiltersChange('title', e.target.value)}
-        style={{ width: '100%' }}
         className="filterInput"
         placeholder="Title"
         label="Title:"
@@ -47,7 +49,6 @@ export const ProductFilters = ({ handleSearch }) => {
         className="filterInput"
         type="number"
         min={0}
-        style={{ width: '100%' }}
         placeholder="Price from"
         label="Price from:"
       />
@@ -55,12 +56,27 @@ export const ProductFilters = ({ handleSearch }) => {
         value={filters.price_to}
         onChange={(e) => handleFiltersChange('price_to', e.target.value, 'number')}
         onBlur={handlePriceToOnBlur}
-        style={{ width: '100%' }}
         min={0}
         type="number"
         className="filterInput"
         placeholder="Price to"
         label="Price to:"
+      />
+      <Input
+        value={filters.from}
+        onChange={(e) => handleFiltersChange('from', e.target.value)}
+        min={0}
+        type="date"
+        className="filterInput"
+        label="Date from:"
+      />
+      <Input
+        value={filters.to}
+        onChange={(e) => handleFiltersChange('to', e.target.value)}
+        min={0}
+        type="date"
+        className="filterInput"
+        label="Date to:"
       />
       <button onClick={() => handleSearch(filters)}>Search</button>
     </div>
