@@ -5,6 +5,7 @@ import './styles.css';
 import { Pagination } from '../../components/Pagination';
 import { ProductCard } from './components/ProductCard';
 import { ProductFilters } from './components/ProductFilters';
+import { useSearchParams } from 'react-router-dom';
 
 const initPagination = { page: 1 };
 
@@ -12,7 +13,9 @@ export const ProductsPage = () => {
   const [products, setProducts] = useState({});
   const [pagination, setPagination] = useState(initPagination);
   const [totalPages, setTotalPages] = useState();
-  const [filters, setFilters] = useState();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [filters, setFilters] = useState(Object.fromEntries(searchParams));
 
   const onPageChange = (newPage) => {
     setPagination((prev) => ({ ...prev, page: newPage }));
@@ -22,6 +25,7 @@ export const ProductsPage = () => {
     setPagination(initPagination);
     setProducts({});
     setFilters(newFilters);
+    setSearchParams(newFilters);
   };
 
   const fetchProducts = useCallback(async () => {
@@ -44,7 +48,7 @@ export const ProductsPage = () => {
 
   return (
     <div className="productsPageContainer">
-      <ProductFilters handleSearch={handleSearch} />
+      <ProductFilters handleSearch={handleSearch} initFilters={filters} />
       <div className="productsWrapContainer">
         <div className="productsContainer">
           {currentProducts

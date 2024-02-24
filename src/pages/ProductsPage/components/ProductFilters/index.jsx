@@ -2,8 +2,9 @@ import { useCallback, useState } from 'react';
 import { Input } from '../../../../shared/Input';
 import './styles.css';
 import { getToday } from '../../../../utils/getToday';
+import { mergeObjects } from '../../../../utils/mergeObjects';
 
-const initFilters = {
+const initFiltersConst = {
   title: '',
   price_to: 100000,
   price_from: 1,
@@ -11,8 +12,8 @@ const initFilters = {
   to: getToday(),
 };
 
-export const ProductFilters = ({ handleSearch }) => {
-  const [filters, setFilters] = useState(initFilters);
+export const ProductFilters = ({ handleSearch, initFilters }) => {
+  const [filters, setFilters] = useState(mergeObjects(initFiltersConst, initFilters));
 
   const handleFiltersChange = useCallback((propName, newValue, type) => {
     setFilters((prev) => ({
@@ -22,16 +23,18 @@ export const ProductFilters = ({ handleSearch }) => {
   }, []);
 
   const handlePriceFromOnBlur = () => {
-    if (filters.price_from > filters.price_to && typeof filters.price_to === 'number') {
+    if (filters.price_from > filters.price_to) {
       handleFiltersChange('price_from', filters.price_to - 1);
     }
   };
 
   const handlePriceToOnBlur = () => {
-    if (filters.price_from > filters.price_to && typeof filters.price_from === 'number') {
+    if (filters.price_from > filters.price_to) {
       handleFiltersChange('price_to', filters.price_from + 1);
     }
   };
+
+  const handleFocus = (event) => event.target.select();
 
   return (
     <div className="filters">
@@ -49,6 +52,7 @@ export const ProductFilters = ({ handleSearch }) => {
         className="filterInput"
         type="number"
         min={0}
+        onFocus={handleFocus}
         placeholder="Price from"
         label="Price from:"
       />
@@ -57,6 +61,7 @@ export const ProductFilters = ({ handleSearch }) => {
         onChange={(e) => handleFiltersChange('price_to', e.target.value, 'number')}
         onBlur={handlePriceToOnBlur}
         min={0}
+        onFocus={handleFocus}
         type="number"
         className="filterInput"
         placeholder="Price to"
