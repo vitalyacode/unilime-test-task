@@ -1,0 +1,8 @@
+.errorMessage {
+  color: rgb(173, 40, 17);
+  margin: 0;
+}
+
+.input {
+  box-sizing: border-box;
+}
