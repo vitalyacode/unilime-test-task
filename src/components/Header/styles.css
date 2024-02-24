@@ -5,3 +5,13 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.user {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.logOut {
+  cursor: pointer;
+}

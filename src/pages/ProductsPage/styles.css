@@ -1,0 +1,26 @@
+.productsPageContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.productsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+
+}
+
+.productsWrapContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-wrap: wrap;
+  max-width: 900px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}

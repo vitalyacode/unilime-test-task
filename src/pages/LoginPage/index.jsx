@@ -1,9 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { Input } from '../../shared/Input';
 import './styles.css';
-import httpClient from '../../api/httpClient';
-import { API_ROUTES } from '../../api/routes';
-import QueryString from 'qs';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from '../../store/auth/authActions';
+import { getAuth } from '../../store/auth/authSelectors';
+import { useNavigate } from 'react-router';
+import { ROUTES } from '../../constants/routes';
+import { useEffect } from 'react';
 
 export const LoginPage = () => {
   const {
@@ -12,16 +15,27 @@ export const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async ({ email, password }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { userLoggedIn, error } = useSelector(getAuth);
+
+  const onSubmit = async (data) => {
     try {
-      const response = await httpClient.post(
-        API_ROUTES.LOGIN,
-        QueryString.stringify({ email, password })
-      );
+      await dispatch(signIn(data));
     } catch (e) {
       alert('Internal server error. Please try again later');
     }
   };
+
+  useEffect(() => {
+    if (userLoggedIn) navigate(ROUTES.PRODUCTS);
+  }, [navigate, userLoggedIn]);
+
+  useEffect(() => {
+    console.log();
+    if (error) alert('Internal server error. Please try again later');
+  }, [error]);
 
   return (
     <div style={{ height: '100%' }}>

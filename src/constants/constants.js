@@ -1,1 +1,1 @@
-export const backendUrl = 'https://dummy-api.d0.acom.cloud/';
+export const backendUrl = 'https://dummy-api.d0.acom.cloud/api/';
