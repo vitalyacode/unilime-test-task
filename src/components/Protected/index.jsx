@@ -7,7 +7,6 @@ import { getAuth } from '../../store/auth/authSelectors';
 export const Protected = ({ children }) => {
   const { userLoggedIn } = useSelector(getAuth);
   const navigate = useNavigate();
-  console.log(userLoggedIn);
 
   useEffect(() => {
     if (!userLoggedIn) {

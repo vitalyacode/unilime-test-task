@@ -33,7 +33,6 @@ export const LoginPage = () => {
   }, [navigate, userLoggedIn]);
 
   useEffect(() => {
-    console.log();
     if (error) alert('Internal server error. Please try again later');
   }, [error]);
 

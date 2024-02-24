@@ -19,7 +19,6 @@ export const ProductsPage = () => {
   };
 
   const handleSearch = (newFilters) => {
-    console.log(newFilters);
     setPagination(initPagination);
     setProducts({});
     setFilters(newFilters);
